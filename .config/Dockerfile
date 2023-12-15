@@ -10,7 +10,8 @@ ENV GF_AUTH_ANONYMOUS_ENABLED "true"
 ENV GF_AUTH_BASIC_ENABLED "false"
 # Set development mode so plugins can be loaded without the need to sign
 ENV GF_DEFAULT_APP_MODE "development"
+ARG livereload_host=http:\\/\\/localhost:35729
 
 # Inject livereload script into grafana index.html
 USER root
-RUN sed -i 's/<\/body><\/html>/<script src=\"http:\/\/localhost:35729\/livereload.js\"><\/script><\/body><\/html>/g' /usr/share/grafana/public/views/index.html
+RUN sed -i "s/<\/body><\/html>/<script src='${livereload_host}\/livereload.js'><\/script><\/body><\/html>/g" /usr/share/grafana/public/views/index.html

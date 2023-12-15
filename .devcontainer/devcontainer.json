@@ -1,5 +1,21 @@
 {
   "image": "mcr.microsoft.com/devcontainers/universal:2",
-  "features": {
-  }
+  "waitFor": "onCreateCommand",
+  "updateContentCommand": "npm install",
+  "postCreateCommand": "",
+  "postAttachCommand": {
+    "server": "npm run dev",
+    "grafana": "npm run server"
+  },
+  "portsAttributes": {
+    "35729": {
+      "label": "Application",
+      "onAutoForward": "silent"
+    },
+    "3000": {
+      "label": "Grafana",
+      "onAutoForward": "openPreview"
+    }
+  },
+  "forwardPorts": [35729, 3000]
 }
